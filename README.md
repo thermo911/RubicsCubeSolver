@@ -7,7 +7,7 @@ This project was written for learning purposes. It performs Thistlethwaite’s A
 The very first question we need to ask ourselves is "How to handle cube states and rotations effectively?".\
 Well, there are 2 ways:
 1. **Naive**: store cube as 54 integers, `int cube[6][3][3]` for example. It's human-friendly but quite slow.
-2. **BitWISE**. Cube's sticker can be 1 of 6 colors, so 4 bits of memory is enough to store it. \
+2. **BitWISE**: Cube's sticker can be 1 of 6 colors, so 4 bits of memory is enough to store it. \
 Using Higher Math formulas we can figure out that cube's side is just 4-bytes integer `uint32_t` and cube is actually `uint32_t sides[6]`\
 This way provides ability to handle rotations on the bits level which is really fast and, suddenly, easier for coding (see `Cube::rotate()` for example).
 
@@ -18,7 +18,7 @@ indices of sides -- 0    1    2    3    4    5    6    7
 ```
 
 That's how it looks on cube (x is index of side).
-![Flat view](https://github.com/thermo911/IS-2020-prog-2-sem/blob/master/homework6/images/cube.png)
+![Flat view](https://github.com/thermo911/RubicsCubeSolver/blob/master/images/cube.png)
 
 ## Algorithm
 
