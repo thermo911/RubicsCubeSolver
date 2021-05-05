@@ -30,7 +30,7 @@ Cube& Cube::operator=(const Cube& other)
     return *this;
 }
 
-size_t Cube::get_val_by_ij(size_t side, size_t row, size_t col) const
+uint32_t Cube::get_val_by_ij(size_t side, size_t row, size_t col) const
 {
     if (row == 0) 
         return (sides[side] & (0x0000000F << (col * 4))) >> (col * 4);
@@ -207,8 +207,8 @@ size_t Cube::get_corner_index(size_t i) {
         cur_corner[1] = get_val(2, 4);
         cur_corner[2] = get_val(3, 6);
     }
-
-    if (cur_corner[0] > cur_corner[1]) std::swap(cur_corner[0], cur_corner[1]); // sorting
+    // sorting
+    if (cur_corner[0] > cur_corner[1]) std::swap(cur_corner[0], cur_corner[1]);
     if (cur_corner[1] > cur_corner[2]) std::swap(cur_corner[1], cur_corner[2]);
     if (cur_corner[0] > cur_corner[1]) std::swap(cur_corner[0], cur_corner[1]);
 
@@ -373,6 +373,7 @@ bool Cube::on_group1()
         } 
     }
 
+    // checking slice between UP and DOWN 
     val = get_val(2, 3);
     if (val == 1 || val == 3)
         return false;
@@ -410,9 +411,7 @@ bool Cube::on_group1()
 
 // 1) state such that all corners are correctly oriented
 // 2) four of the edges are moved to the correct slice:
-//    The front-up, front-down, back-up, 
-//    and back-down edges are placed in the M slice 
-//    (the layer between the left and right faces)
+//    (the layer between the up and down faces)
 bool Cube::on_group2()
 {
     for (size_t i = 0; i < 4; ++i) 
@@ -434,6 +433,7 @@ bool Cube::on_group3()
 {
     size_t c_ind;
 
+    // corners on their orbits
     c_ind = get_corner_index(0);
     if (c_ind != 0 && c_ind != 2)
         return false;
@@ -455,6 +455,7 @@ bool Cube::on_group3()
     if (c_ind != 4 && c_ind != 6)
         return false;
 
+    // no LEFT or RIGHT colors on slice between LEFT and RIGHT
     for (size_t i = 0; i < 6; ++i) {
         if (i == 1 || i == 3)
             continue;

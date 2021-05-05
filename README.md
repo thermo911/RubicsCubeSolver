@@ -57,4 +57,4 @@ while not solved():
         improve_group(group)    // increase group using moves desribed earlier 
 ```
 `Solver::improve_group()` method uses [IDDFS](https://en.wikipedia.org/wiki/Iterative_deepening_depth-first_search#:~:text=In%20computer%20science%2C%20iterative%20deepening,until%20the%20goal%20is%20found) algorithm to iterate through moves combinations. 
-It finds closest path from one group to another like BFS, but takes only O(n) memory, where n - length of combination.
+It finds shortest path from one group to another like BFS, but takes only O(n) memory, where n - length of combination.

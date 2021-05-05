@@ -29,7 +29,10 @@ Solver::Solver(const Cube& cube)
     turns_for_group[3] = { L2, R2, F2, B2, U2, D2 };
 }
 
-
+/*
+    @return true if next (considered) turn isn't in
+    last's group. For example, turns F, F' and F2 in one group.
+*/
 bool Solver::next_turn_valid(Rotation last, Rotation next)
 {
     if (last < next)
@@ -99,16 +102,13 @@ std::list<Rotation> Solver::solution()
             cur_group++;
             continue;
         }
-        // std::cout << "cur_group " << cur_group << std::endl;
         auto seq = improve_group(cur_group); 
         Cube temp{ cube };
         temp.combo_move(seq);
         if (temp.on_group(cur_group + 1)) {
             cur_group++;
             cube.combo_move(seq);
-            // std::cout << "[CUR_GROUP]: " << cur_group << std::endl << cube <<std::endl;
             for (auto x: seq) {
-                // std::cout << turns[x] << ' ';
                 answer.push_back(x);
             }
             std::cout << "\nsolution: " << cur_group * 25 << "%\n";
