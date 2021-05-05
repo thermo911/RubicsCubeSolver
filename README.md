@@ -58,3 +58,9 @@ while not solved():
 ```
 `Solver::improve_group()` method uses [IDDFS](https://en.wikipedia.org/wiki/Iterative_deepening_depth-first_search#:~:text=In%20computer%20science%2C%20iterative%20deepening,until%20the%20goal%20is%20found) algorithm to iterate through moves combinations. 
 It finds shortest path from one group to another like BFS, but takes only O(n) memory, where n - length of combination.
+
+## Commands
+`load <filename>` to load scrambled cube for existing file (note, that file must be made by this program). \
+`save <filename>` to save current cube state to file. \
+`rotate <turns combination>` to rotate cube with respect of given combination (for example, `rotate F2 L' R U2`). \
+`solve` to get sequence of turns which solves the cube (cube will be solved after that command).
